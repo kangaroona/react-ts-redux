@@ -20,6 +20,7 @@ const initialState: CounterState = {
 export const incrementAsync = createAsyncThunk(
   'counter/fetchCount',
   async (amount: number) => {
+    console.log(amount)
     const response = await fetchCount(amount);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
