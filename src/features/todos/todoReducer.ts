@@ -18,20 +18,27 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<TodoItem>) => {
-      return [
-        ...state,
-        { text: action.payload.text, id: action.payload.id, completed: false },
-      ];
+      state.push({
+        text: action.payload.text,
+        id: action.payload.id,
+        completed: false,
+      });
+      // return [
+      //   ...state,
+      //   { text: action.payload.text, id: action.payload.id, completed: false },
+      // ];
     },
-    delTodo: (state, action: PayloadAction<number>) => {
+    delTodo: (state, action: PayloadAction<number[]>) => {
       return state.filter((item) => {
-        return (action.payload! = item.id);
+        return !action.payload.includes(item.id);
       });
     },
     toggleTodo: (state, action: PayloadAction<number>) => {
-      return state.map((item) =>
-        item.id === action.payload ? { ...item, completed: true } : item
-      );
+      state.forEach((item) => {
+        if (item.id === action.payload) {
+          item.completed = !item.completed;
+        }
+      });
     },
   },
 });
