@@ -7,7 +7,7 @@ function Todo() {
   const [textValue, setText] = useState("");
   const dispatch = useAppDispatch();
   function handleAdd() {
-    dispatch(addTodo({ id: todos.length, text: textValue }));
+    dispatch(addTodo({ id: todos.length.toString(), text: textValue }));
     setText("");
   }
   return (

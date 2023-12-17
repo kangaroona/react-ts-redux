@@ -3,12 +3,12 @@ import { RootState } from "../../app/store";
 export interface TodoItem {
   text: string;
   completed?: Boolean;
-  id: number;
+  id: string;
 }
 export type ToDoState = TodoItem[];
 const initialState: ToDoState = [
   {
-    id: 0,
+    id: "00",
     text: "Eat food",
     completed: true,
   },
@@ -28,12 +28,12 @@ export const todoSlice = createSlice({
       //   { text: action.payload.text, id: action.payload.id, completed: false },
       // ];
     },
-    delTodo: (state, action: PayloadAction<number[]>) => {
+    delTodo: (state, action: PayloadAction<string[]>) => {
       return state.filter((item) => {
         return !action.payload.includes(item.id);
       });
     },
-    toggleTodo: (state, action: PayloadAction<number>) => {
+    toggleTodo: (state, action: PayloadAction<string>) => {
       state.forEach((item) => {
         if (item.id === action.payload) {
           item.completed = !item.completed;

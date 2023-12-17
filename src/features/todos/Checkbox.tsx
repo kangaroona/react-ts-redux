@@ -6,7 +6,7 @@ function Checkbox({ item }: { item: TodoItem }) {
   const checked = item.completed ? true : false;
   const handleCheck = (e: any) => {
     // handleToggle(value);
-    dispatch(toggleTodo(parseInt(e.target.value)));
+    dispatch(toggleTodo(e.target.value));
   };
   return (
     <input
